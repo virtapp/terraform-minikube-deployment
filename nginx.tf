@@ -18,7 +18,7 @@ resource "helm_release" "ingress_nginx" {
 
   values = [file("config/nginx_values.yaml")]
 
-  depends_on = [kind_cluster.default]
+  depends_on = [minikube.default]
 }
 
 resource "null_resource" "wait_for_ingress_nginx" {
