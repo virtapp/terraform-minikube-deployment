@@ -1,7 +1,8 @@
-![image](https://user-images.githubusercontent.com/23049337/221376202-40474f94-3a65-4f9f-b8e3-85dabef15e67.png)
+![image](https://user-images.githubusercontent.com/23049337/222927393-a65458c8-be17-4dfe-9c02-c5203aee899a.png)
+
 
  
-Kubernetes in Docker with Terraform
+Kubernetes Minikube with Terraform
 
 
 
@@ -13,7 +14,7 @@ This project is a simple example of how to use Terraform to create a Kubernetes 
 The following tools were used in this project:
 
     Terraform
-    Kind
+    Minikube
     Docker
     
 
