@@ -1,0 +1,60 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgresql-ha
+  namespace: argocd
+spec:
+  destination:
+    namespace: infra
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: charts/infra/postgresql-ha
+    repoURL: https://github.com/virtapp/local-deployment.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mariadb-galera
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      parameters:
+      - name: rootUser.user
+        value: "root"
+      - name: rootUser.password
+        value: "fuko09phsurxho"
+    path: charts/infra/mariadb-galera
+    repoURL: https://github.com/virtapp/local-deployment.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+
+---
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nexus
+  namespace: argocd
+spec:
+  destination:
+    namespace: infra
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: charts/infra/nexus
+    repoURL: https://github.com/virtapp/local-deployment.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
