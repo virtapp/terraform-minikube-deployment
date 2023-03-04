@@ -1,4 +1,4 @@
-# kind_cluster.tf
+# minikube_cluster.tf
 
 provider "kubernetes" {
   config_context_cluster   = "minikube"
