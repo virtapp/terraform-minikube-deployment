@@ -12,7 +12,7 @@ resource "helm_release" "argocd" {
   values = [
     file("config/argo-values.yaml")
   ]
-  depends_on = [kind_cluster.default]
+  depends_on = [minikube.default]
 }
 
 resource "null_resource" "wait_for_argocd" {
