@@ -6,11 +6,6 @@ terraform {
       version = ">= 3.65.0"
     }
 
-    kind = {
-      source  = "kyma-incubator/kind"
-      version = "0.0.11"
-    }
-
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "2.9.0"
