@@ -2,7 +2,7 @@
 
 provider "helm" {
   kubernetes {
-    config_path = pathexpand(var.kind_cluster_config_path)
+    config_path = "~/.kube/config"
   }
 }
 
@@ -18,7 +18,7 @@ resource "helm_release" "ingress_nginx" {
 
   values = [file("config/nginx_values.yaml")]
 
-  depends_on = [minikube.default]
+  #depends_on = [minikube]
 }
 
 resource "null_resource" "wait_for_ingress_nginx" {

@@ -1,9 +1,11 @@
 data "external" "subnet" {
   program = ["/bin/bash", "-c", "docker network inspect -f '{{json .IPAM.Config}}' kind | jq .[0]"]
-  depends_on = [
-    kind_cluster.default
-  ]
+  #depends_on = [
+  #  kind_cluster.default
+  #]
 }
+
+
 resource "helm_release" "metallb" {
   name             = "metallb"
   repository       = "https://metallb.github.io/metallb"
@@ -20,12 +22,12 @@ resource "helm_release" "metallb" {
       protocol: layer2
       addresses:
       # - ${cidrhost(data.external.subnet.result.Subnet, 150)}-${cidrhost(data.external.subnet.result.Subnet, 200)}
-      - 172.18.255.1-172.18.255.250
+      - 172.16.100.170-172.16.100.180
   EOF
   ]
-  depends_on = [
-    kind_cluster.default
-  ]
+  #depends_on = [
+  #  default
+  #]
 }
 
 resource "null_resource" "wait_for_metallb" {
